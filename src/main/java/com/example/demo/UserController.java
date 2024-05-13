@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
+
+
 
 @RestController
 @RequestMapping("/users")
@@ -33,6 +36,12 @@ public class UserController {
         return currentUserInBd.get();
     }
 
+    @GetMapping("/usuarios")
+    public List<UserEntity> getAllUsers() {
+    	
+        return userJpaRepository.findAll();
+    }
+    
     @PostMapping()
     public UserEntity userRegisterandAddToCompany(@RequestBody UserRegisterCommand userRegisterCommand){
 
